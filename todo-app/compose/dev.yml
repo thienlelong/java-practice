@@ -14,7 +14,7 @@ services:
     build:
         context: ../
         dockerfile: ./src/main/docker/dev.df
-    image: thienlelong/todoapp_api
+    image: thienlelong/todo-app
     command: ["mvn", "spring-boot:run", "-Dspring.profiles.active=dev"]
     volumes:
       - ../:/app
