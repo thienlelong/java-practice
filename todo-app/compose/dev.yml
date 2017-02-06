@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=todos
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=nopass
+    container_name: todo_db
+  api:
+    build:
+        context: ../
+        dockerfile: ./src/main/docker/dev.df
+    image: thienlelong/todoapp_api
+    command: ["mvn", "spring-boot:run", "-Dspring.profiles.active=dev"]
+    volumes:
+      - ../:/app
+    ports:
+      - "8080:8080"
+    links:
+      - db:mysql
+    container_name: todo_api
