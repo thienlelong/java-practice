@@ -16,13 +16,13 @@
 
 #### Requirement:
 
-- Create APIs for todo-list app
-- Features
--- Register, Login & Logout
--- Create a todo
--- Delete a todo or list todos
--- List all todos
--- Unit test for all APIs
+1. Create APIs for todo-list app
+2. Features
+  - Register, Login & Logout
+  - Create a todo
+  - Delete a todo or list todos
+  - List all todos
+  - Unit test for all APIs
 
 ## Run dev environment
 
