@@ -1,0 +1,32 @@
+version: '2'
+services:
+  todo-api:
+    image: thienlelong/todo-app
+    stdin_open: true
+    tty: true
+    links:
+    - todo-db:mysql
+    labels:
+      io.rancher.container.pull_image: always
+
+  todo-api-lb:
+    image: rancher/lb-service-haproxy:v0.4.6
+    ports:
+    - 8888:8888/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+
+  todo-db:
+    image: mysql:5.6
+    environment:
+      MYSQL_DATABASE: todos
+      MYSQL_PASSWORD: nopass
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+    stdin_open: true
+    tty: true
+    ports:
+    - 3306:3306/tcp
+    labels:
+      io.rancher.container.pull_image: always
