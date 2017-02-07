@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by TriHo on 2/6/17.
  */
 
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
