@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author thienlelong
+ * Project: toto-app
+ * Greeting resource
  */
 
 @RestController

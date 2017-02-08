@@ -16,7 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * @author thienlelong
+ * Project: toto-app
+ * Global authentication config
  */
 @Configuration
 @EnableGlobalAuthentication

@@ -4,7 +4,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * @author thienlelong
+ * Project: toto-app
+ * User DTO to tranfer data model
  */
 public class UserDTO {
     long userId;
