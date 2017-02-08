@@ -1,11 +1,16 @@
 package com.agilityio.todo.repository;
 
 import com.agilityio.todo.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by TriHo on 2/6/17.
+ * Project: toto-app
  */
-public interface UserRepository extends CrudRepository<User, Long> {
+
+public interface UserRepository extends JpaRepository<User, Long> {
     User findUsersByUserId(long userId);
+
+    User findUsersByUserName(String userName);
+
+    User findUserByEmail(String email);
 }

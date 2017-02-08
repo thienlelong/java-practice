@@ -3,9 +3,15 @@ package com.agilityio.todo.service;
 import com.agilityio.todo.domain.User;
 
 /**
- * Created by TriHo on 2/6/17.
+ * Project: toto-app
  */
+
 public interface UserService {
     User createUser(String userName, String fullName, String email, String password);
+
     User findUser(long userId);
+
+    User findUsersByUserName(String userName);
+
+    User findUserByEmail(String email);
 }

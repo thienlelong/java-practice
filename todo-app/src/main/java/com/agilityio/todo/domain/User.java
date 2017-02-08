@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Created by TriHo on 2/6/17.
+ * Project: toto-app
  */
 
 @Entity
@@ -39,6 +39,9 @@ public class User {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public long getUserId() {

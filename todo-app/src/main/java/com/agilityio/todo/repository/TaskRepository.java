@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * Created by TriHo on 2/6/17.
+ * Project: toto-app
  */
 public interface TaskRepository extends CrudRepository<Task, Long> {
     List<Task> findTasksByUserId(long userId);
