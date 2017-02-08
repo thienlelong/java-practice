@@ -4,6 +4,7 @@ import com.agilityio.todo.domain.Task;
 import com.agilityio.todo.repository.TaskRepository;
 import com.agilityio.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Project: toto-app
  */
 
+@Service
 public class TaskServiceImpl implements TaskService {
     @Autowired
     TaskRepository taskRepository;
