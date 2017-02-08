@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Project Name: todo-app
@@ -53,7 +54,16 @@ public class TaskResource {
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public ResponseEntity<?> getTodos(HttpServletRequest request) {
-        return null;
+        User user = getUserFromToken(request);
+
+        if (user != null) {
+            //Get list of tasks
+            List<Task> tasks = taskService.findAllTasks(user.getUserId());
+
+            return new ResponseEntity(tasks, HttpStatus.OK);
+        }
+
+        return new ResponseEntity("Has error when getting list of tasks.", HttpStatus.BAD_REQUEST);
     }
 
     private User getUserFromToken(HttpServletRequest request) {
