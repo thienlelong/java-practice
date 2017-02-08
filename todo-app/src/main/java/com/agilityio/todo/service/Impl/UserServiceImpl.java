@@ -12,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by TriHo on 2/6/17.
  */
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -30,5 +31,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUser(long userId) {
         return userRepository.findUsersByUserId(userId);
+    }
+
+    @Override
+    public User findUsersByUserName(String userName) {
+        return userRepository.findUsersByUserName(userName);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 }
