@@ -38,15 +38,10 @@ public class TaskResource {
 
     @RequestMapping(value = "/todo", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity<?> createTodo(@Valid @RequestBody TaskDTO taskDTO, HttpServletRequest request) {
-        // Get username from token
-        String token = request.getHeader("Authorization");
-        tokenAuthenticationService = new TokenAuthenticationService();
-        String username = tokenAuthenticationService.getUsernameFromToken(token);
+        // Get userId from token
+        User user = getUserFromToken(request);
 
-        // Get userId from username
-        User user = userService.findUsersByUserName(username);
-
-        if(user != null) {
+        if (user != null) {
             // Create a new task
             Task task = taskService.createTask(user.getUserId(), taskDTO.getTask(), taskDTO.getDescription());
 
@@ -54,5 +49,19 @@ public class TaskResource {
         }
 
         return new ResponseEntity("Has error when create a new task.", HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/todos", method = RequestMethod.GET)
+    public ResponseEntity<?> getTodos(HttpServletRequest request) {
+        return null;
+    }
+
+    private User getUserFromToken(HttpServletRequest request) {
+        // Get username from token
+        String token = request.getHeader("Authorization");
+        tokenAuthenticationService = new TokenAuthenticationService();
+        String username = tokenAuthenticationService.getUsernameFromToken(token);
+
+        return userService.findUsersByUserName(username);
     }
 }
