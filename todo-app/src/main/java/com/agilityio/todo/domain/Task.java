@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by TriHo on 2/6/17.
+ * Project: toto-app
  */
 
 @Entity
