@@ -32,7 +32,7 @@ public class Task {
     }
 
     public Task() {
-        
+
     }
 
     public long getTaskId() {
