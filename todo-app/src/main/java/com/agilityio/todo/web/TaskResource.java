@@ -28,19 +28,18 @@ import java.util.List;
 
 @RestController
 public class TaskResource {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserResource.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TaskResource.class);
+
+    @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
 
     @Autowired
     TaskService taskService;
 
-    @Autowired
-    UserService userService;
-
     @RequestMapping(value = "/todo", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity<?> createTodo(@Valid @RequestBody TaskDTO taskDTO, HttpServletRequest request) {
         // Get userId from token
-        User user = getUserFromToken(request);
+        User user = tokenAuthenticationService.getUserFromToken(request);
 
         if (user != null) {
             // Create a new task
@@ -54,7 +53,7 @@ public class TaskResource {
 
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public ResponseEntity<?> getTodos(HttpServletRequest request) {
-        User user = getUserFromToken(request);
+        User user = tokenAuthenticationService.getUserFromToken(request);
 
         if (user != null) {
             //Get list of tasks
@@ -64,14 +63,5 @@ public class TaskResource {
         }
 
         return new ResponseEntity("Has error when getting list of tasks.", HttpStatus.BAD_REQUEST);
-    }
-
-    private User getUserFromToken(HttpServletRequest request) {
-        // Get username from token
-        String token = request.getHeader("Authorization");
-        tokenAuthenticationService = new TokenAuthenticationService();
-        String username = tokenAuthenticationService.getUsernameFromToken(token);
-
-        return userService.findUsersByUserName(username);
     }
 }
