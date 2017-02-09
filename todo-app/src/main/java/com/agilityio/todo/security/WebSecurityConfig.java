@@ -1,7 +1,9 @@
 package com.agilityio.todo.security;
 
+import com.agilityio.todo.config.Http401UnauthorizedEntryPoint;
 import com.agilityio.todo.security.jwt.JWTAuthenticationFilter;
 import com.agilityio.todo.security.jwt.JWTLoginFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -32,6 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JWTLoginFilter("/login", authenticationManager());
     }
 
+    @Autowired
+    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint;
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
@@ -43,8 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtLoginFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.headers().cacheControl();
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(http401UnauthorizedEntryPoint);
+        httpSecurity.headers().cacheControl().disable();
     }
 
 }
