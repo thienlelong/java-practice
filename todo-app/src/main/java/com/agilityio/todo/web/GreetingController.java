@@ -1,11 +1,12 @@
 package com.agilityio.todo.web;
 
+import com.agilityio.todo.domain.User;
 import com.agilityio.todo.security.jwt.TokenAuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Project: toto-app
@@ -15,14 +16,13 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class GreetingController {
 
+    @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
 
     @RequestMapping("/greeting")
     public String greeting(HttpServletRequest request) {
 
-        String token = request.getHeader("Authorization");
-        tokenAuthenticationService = new TokenAuthenticationService();
-        String userName = tokenAuthenticationService.getUsernameFromToken(token);
-        return "Hi! " + userName;
+        User user = tokenAuthenticationService.getUserFromToken(request);
+        return "Hi! " + user.toString();
     }
 }
