@@ -1,0 +1,20 @@
+# configure authentication
+jwt:
+  headerString: Authorization
+  secret: mySecret
+  expiration: 36000000
+  tokenPrefix: Bearer
+
+  spring:
+    datasource:
+      url: jdbc:mysql://mysql:3306/todos
+      username: admin
+      password: nopass
+      driver-class-name: com.mysql.jdbc.Driver
+      platform: mysql
+      initialize: false
+    jpa:
+      hibernate:
+        ddl-auto: update
+  banner:
+    location: classpath:/META-INF/banner.txt
