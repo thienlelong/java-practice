@@ -13,11 +13,11 @@ services:
   api:
     build:
         context: ../
-        dockerfile: ./src/main/docker/dev.df
+        dockerfile: ./docker/dev.df
     image: thienlelong/todo-app:dev
     command: ["mvn", "spring-boot:run", "-Dspring.profiles.active=dev"]
     volumes:
-      - ../:/app
+      - ../../:/app
     ports:
       - "8081:8080"
     links:
