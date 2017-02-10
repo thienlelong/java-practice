@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<docker.image.prefix>thienlelong</docker.image.prefix>
+		<project.path>./</project.path>
 	</properties>
 
 	<dependencies>
@@ -79,7 +80,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
+					<dockerDirectory>${project.path}/devops/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

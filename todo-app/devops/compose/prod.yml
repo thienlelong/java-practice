@@ -12,8 +12,6 @@ services:
     container_name: todo_db_prod
   api:
     image: thienlelong/todo-app
-    volumes:
-      - ../:/app
     ports:
       - "8080:8080"
     links:
