@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 /**
  * Project: toto-app
+ * Mock Data Source config for unit test
  */
 @Configuration
 public class TestingDataSourceConfig {

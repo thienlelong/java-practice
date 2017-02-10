@@ -20,11 +20,10 @@ import java.util.Optional;
 
 /**
  * Project: toto-app
- * All rest api for user resource
+ * REST controller for managing the current user's account.
  */
-
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserResource.class);
 
@@ -43,7 +42,8 @@ public class UserResource {
                         return new ResponseEntity<>("Email already in use", httpHeaders, HttpStatus.BAD_REQUEST);
                     }
 
-                    User user = userService.createUser(userDTO.getUserName(), userDTO.getFullName(), userDTO.getEmail(), userDTO.getPassword());
+                    User user = userService.createUser(userDTO.getUserName(), userDTO.getFullName(),
+                            userDTO.getEmail(), userDTO.getPassword());
                     return new ResponseEntity(user, HttpStatus.CREATED);
                 });
     }

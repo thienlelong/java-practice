@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Project: toto-app
- * Global authentication config
+ * Authenticate a user from the database.
  */
 @Configuration
 @EnableGlobalAuthentication

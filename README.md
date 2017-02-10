@@ -24,7 +24,16 @@
   - List all todos
   - Unit test for all APIs
 
-## Run dev environment
+## Building for develop
 
 - cd todo-app
-- run: docker-compose -f compose/dev.yml up
+- run: docker-compose -f devops/compose/dev.yml up
+
+## Building for production
+
+To achieve this, first build a docker image of your app by running:
+  - cd todo-app
+  - ./mvnw package -DskipTests docker:build
+
+Then run:
+  - docker-compose -f devops/compose/prod.yml up -d

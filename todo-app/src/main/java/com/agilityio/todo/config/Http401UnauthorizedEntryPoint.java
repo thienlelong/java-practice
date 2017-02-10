@@ -11,12 +11,13 @@ import java.io.IOException;
 
 /**
  * Project: toto-app
- * RestAuthenticationEntryPoint
+ * Returns a 401 error code (Unauthorized) to the client.
  */
 @Component
 public class Http401UnauthorizedEntryPoint implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                         AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

@@ -5,10 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Project: toto-app
- * User DTO to tranfer data model
  */
 public class UserDTO {
-    long userId;
+
     @Email
     @NotEmpty
     private String email;
@@ -19,22 +18,13 @@ public class UserDTO {
     @NotEmpty
     private String password;
 
-    public UserDTO(long userId, String email, String fullName, String userName) {
+    public UserDTO(String email, String fullName, String userName) {
         this.email = email;
         this.fullName = fullName;
         this.userName = userName;
-        this.userId = userId;
     }
 
     public UserDTO() {
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public String getEmail() {

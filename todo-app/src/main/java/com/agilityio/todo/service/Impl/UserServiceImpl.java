@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Project: toto-app
+ * Service class for managing Users.
  */
-
 @Service
 public class UserServiceImpl implements UserService {
 

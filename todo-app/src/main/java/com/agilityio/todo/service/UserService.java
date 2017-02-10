@@ -4,8 +4,8 @@ import com.agilityio.todo.domain.User;
 
 /**
  * Project: toto-app
+ * Service interface for managing Users.
  */
-
 public interface UserService {
     User createUser(String userName, String fullName, String email, String password);
 

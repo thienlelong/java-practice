@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Project Name: todo-app
- * Created on 2/8/17.
  */
 public class TaskDTO {
     @NotEmpty

@@ -11,3 +11,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+banner:
+  location: classpath:/META-INF/banner.txt
