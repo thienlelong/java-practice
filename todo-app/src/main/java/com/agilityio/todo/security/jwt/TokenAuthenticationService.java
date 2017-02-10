@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * Project: toto-app
- * Token Authentication Service
+ * Utility class for Spring Security.
  */
 @Component
 public class TokenAuthenticationService {

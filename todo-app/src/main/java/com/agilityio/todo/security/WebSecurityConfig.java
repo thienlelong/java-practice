@@ -24,6 +24,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint;
+
     @Bean
     public JWTAuthenticationFilter jwtAuthenticationFilter() throws Exception {
         return new JWTAuthenticationFilter();
@@ -34,9 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JWTLoginFilter("/login", authenticationManager());
     }
 
-    @Autowired
-    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint;
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
@@ -44,14 +44,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers("/users/register").permitAll()
+                .antMatchers("/api/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtLoginFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(http401UnauthorizedEntryPoint);
+
         httpSecurity.headers().cacheControl().disable();
     }
-
 }

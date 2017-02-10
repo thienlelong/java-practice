@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Project: toto-app
+ * Spring Data JPA repository for the User entity.
  */
-
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUsersByUserId(long userId);
 

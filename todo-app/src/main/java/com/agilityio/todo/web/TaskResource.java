@@ -4,7 +4,6 @@ import com.agilityio.todo.domain.Task;
 import com.agilityio.todo.domain.User;
 import com.agilityio.todo.security.jwt.TokenAuthenticationService;
 import com.agilityio.todo.service.TaskService;
-import com.agilityio.todo.service.UserService;
 import com.agilityio.todo.web.dto.TaskDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,19 +21,17 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Project Name: todo-app
- * Created on 2/8/17.
+ * Project: toto-app
+ * REST controller for managing the tasks resource.
  */
-
 @RestController
+@RequestMapping("/api")
 public class TaskResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskResource.class);
-
-    @Autowired
-    private TokenAuthenticationService tokenAuthenticationService;
-
     @Autowired
     TaskService taskService;
+    @Autowired
+    private TokenAuthenticationService tokenAuthenticationService;
 
     @RequestMapping(value = "/todo", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity<?> createTodo(@Valid @RequestBody TaskDTO taskDTO, HttpServletRequest request) {

@@ -30,11 +30,11 @@ import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 /**
  * Project Name: todo-app
- * Created on 2/9/17.
+ * Test class for the UserResource REST controller.
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -72,7 +72,7 @@ public class UserResourceTest {
     @Before
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        user = new User(1,"userdemo", "Haleigh Robel", "userdemo@gmail.com", "123456");
+        user = new User(1, "userdemo", "Haleigh Robel", "userdemo@gmail.com", "123456");
         userInput = new JSONObject();
         userInput.put("userName", user.getUserName());
         userInput.put("fullName", user.getFullName());
@@ -83,7 +83,7 @@ public class UserResourceTest {
     @Test
     public void testRegisterUserInValid() throws Exception {
         userInput.put("email", "invalid_email");
-        mockMvc.perform(post("/users/register")
+        mockMvc.perform(post("/api/register")
                 .contentType(contentType)
                 .content(userInput.toString()))
                 .andExpect(status().is4xxClientError());
@@ -93,7 +93,7 @@ public class UserResourceTest {
     public void testRegisterUserValid() throws Exception {
         Mockito.when(userRepository.save(Matchers.isA(User.class))).thenReturn(user);
 
-        mockMvc.perform(post("/users/register")
+        mockMvc.perform(post("/api/register")
                 .contentType(contentType)
                 .content(userInput.toString()))
                 .andExpect(status().isCreated())
@@ -105,7 +105,7 @@ public class UserResourceTest {
     @Test
     public void testRegisterUserUserNameExist() throws Exception {
         Mockito.when(userRepository.findUsersByUserName(user.getUserName())).thenReturn(user);
-        mockMvc.perform(post("/users/register")
+        mockMvc.perform(post("/api/register")
                 .contentType(contentType)
                 .content(userInput.toString()))
                 .andExpect(status().isBadRequest())
@@ -115,7 +115,7 @@ public class UserResourceTest {
     @Test
     public void testRegisterUserEExist() throws Exception {
         Mockito.when(userRepository.findUserByEmail(user.getEmail())).thenReturn(user);
-        mockMvc.perform(post("/users/register")
+        mockMvc.perform(post("/api/register")
                 .contentType(contentType)
                 .content(userInput.toString()))
                 .andExpect(status().isBadRequest())

@@ -7,18 +7,21 @@ import org.springframework.core.env.Environment;
 
 import java.io.PrintStream;
 
+/**
+ * Main method, used to run the application.
+ */
 @SpringBootApplication
 public class TodoAppApplication {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(TodoAppApplication.class)
-				.banner(new Banner() {
-					@Override
-					public void printBanner(Environment environment, Class<?> sourceClass,
-											PrintStream out) {
-						out.print("\n\t Todo App".toUpperCase());
-					}
-				})
-				.run(args);
-	}
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(TodoAppApplication.class)
+                .banner(new Banner() {
+                    @Override
+                    public void printBanner(Environment environment, Class<?> sourceClass,
+                                            PrintStream out) {
+                        out.print("\n\t Todo App".toUpperCase());
+                    }
+                })
+                .run(args);
+    }
 }
