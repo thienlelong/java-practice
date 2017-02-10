@@ -1,0 +1,9 @@
+FROM maven:3.3.9-jdk-8
+
+EXPOSE 8080
+VOLUME /tmp
+RUN mkdir app
+ADD . /app
+WORKDIR app
+ENV JAVA_OPTS=""
+CMD ["./mvnw", "clean", "test", "-Dspring.profiles.active=dev"]

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  api:
+    build:
+      context: ../../
+      dockerfile: devops/docker/test.df
+    image: thienlelong/todo-app:test
+    container_name: todo_api_test
+    #volumes:
+     # - ../../:/app

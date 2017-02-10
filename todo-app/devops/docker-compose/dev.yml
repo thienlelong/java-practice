@@ -12,8 +12,8 @@ services:
       - MYSQL_PASSWORD=nopass
   api:
     build:
-        context: ../
-        dockerfile: ./docker/dev.df
+        context: ../../
+        dockerfile: devops/docker/dev.df
     image: thienlelong/todo-app:dev
     container_name: todo_api_dev
     command: ["mvn", "spring-boot:run", "-Dspring.profiles.active=dev"]
