@@ -27,7 +27,7 @@
 ## Building for develop
 
 - cd todo-app
-- run: docker-compose -f devops/compose/dev.yml up
+- run: docker-compose -f devops/docker-compose/dev.yml up
 
 ## Building for production
 
@@ -36,4 +36,7 @@ To achieve this, first build a docker image of your app by running:
   - ./mvnw package -DskipTests docker:build
 
 Then run:
-  - docker-compose -f devops/compose/prod.yml up -d
+  - docker-compose -f devops/docker-compose/prod.yml up -d
+
+## Testing
+  - docker-compose -f devops/docker-compose/test.yml up -d
